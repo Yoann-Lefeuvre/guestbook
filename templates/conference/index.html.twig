@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ConferenceController!{% endblock %}
+{% block title %}Conférence Guestbook{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,11 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h2>Faites nous part de votre ressenti !! </h2>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/yoann/symfony/guestbook/src/Controller/ConferenceController.php'|file_link(0) }}">src/Controller/ConferenceController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/yoann/symfony/guestbook/templates/conference/index.html.twig'|file_link(0) }}">templates/conference/index.html.twig</a></code></li>
-    </ul>
+{% for conference in conferences %}
+    <h4>{{ conference }}</h4>
+{% endfor %}
+   
 </div>
 {% endblock %}
