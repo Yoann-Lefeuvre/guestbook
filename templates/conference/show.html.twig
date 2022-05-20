@@ -1,0 +1,33 @@
+{% extends 'base.html.twig'%}
+
+{% block title %}Conference Guestbook {{conference.city}}{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; padding: 5px 20px; max-width: 800px; width: 80%; font: 18px/1.5 sans-serif;
+    background-color: lightgreen; border-radius: 5px; }
+</style>
+
+<div class="example-wrapper">
+    <h2>{{conference.city}} Conférence : </h2>
+
+{% if commentaires|length >= 0%}
+    {% for comment in commentaires %}
+        {% if comment.photoFilename %}
+        <img src="{{ asset('uploads/photos/' ~ comment.photofilename) }}" />
+        {% endif %}
+
+        <h4>{{ comment.author }}</h4>
+
+        <small>
+                {{ comment.createdAt|format_datetime('medium', 'short') }}
+        </small>
+
+        <p>{{ comment.text }}</p>
+    {% endfor %}
+{% else %}
+        <div>No comments have been posted yet for this conference.</div>
+{% endif %}
+    
+</div>
+{% endblock %}
