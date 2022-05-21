@@ -11,8 +11,11 @@
 <div class="example-wrapper">
     <h2>{{conference.city}} Conférence : </h2>
 
-{% if commentaires|length >= 0%}
-    {% for comment in commentaires %}
+{% if comments|length >= 0%}
+
+    <div>There are {{ comments|length }} comments.</div>
+
+    {% for comment in comments %}
         {% if comment.photoFilename %}
         <img src="{{ asset('uploads/photos/' ~ comment.photofilename) }}" />
         {% endif %}
@@ -25,6 +28,14 @@
 
         <p>{{ comment.text }}</p>
     {% endfor %}
+
+     {% if previous >= 0 %}
+            <a href="{{ path('conference', { id: conference.id, offset: previous }) }}">Previous</a>
+        {% endif %}
+        {% if next < comments|length %}
+            <a href="{{ path('conference', { id: conference.id, offset: next }) }}">Next</a>
+        {% endif %}
+
 {% else %}
         <div>No comments have been posted yet for this conference.</div>
 {% endif %}
