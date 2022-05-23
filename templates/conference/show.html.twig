@@ -37,8 +37,9 @@
         {% endif %}
 
 {% else %}
-        <div>No comments have been posted yet for this conference.</div>
+        <div>Il n'y a pas de commentaire pour cette conférence.</div>
 {% endif %}
-    
+    <h2>Ajouter un commentaire</h2>
+    {{form(comment_form)}}
 </div>
 {% endblock %}

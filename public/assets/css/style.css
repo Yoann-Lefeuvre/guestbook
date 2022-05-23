@@ -1,0 +1,19 @@
+#entete {
+  text-align: center;
+  padding: 2em;
+  margin: 1em;
+  color: aqua;
+}
+#entete a {
+  color: orange;
+  border: 0.1em solid orange;
+  text-decoration: none;
+  padding: 0.5em;
+
+  border-radius: 0.2em;
+  box-shadow: 0.15em 0.15em;
+}
+
+a {
+  color: Black;
+}
