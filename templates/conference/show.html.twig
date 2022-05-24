@@ -40,6 +40,37 @@
         <div>Il n'y a pas de commentaire pour cette conférence.</div>
 {% endif %}
     <h2>Ajouter un commentaire</h2>
-    {{form(comment_form)}}
+    {#  {{form(comment_form)}}  affiche la totalité du formulaire #}
+
+<div id="comment-form">
+    {{form_start(comment_form)}}
+    
+    <div class="form-group row">
+				<div class="col-2">{{form_label(comment_form.author)}} :</div>
+				<div class="col-10">{{form_widget(comment_form.author)}}</div>
+	</div>
+     <div class="form-group row">
+				<div class="col-2">{{form_label(comment_form.text)}} :</div>
+				<div class="col-10">{{form_widget(comment_form.text)}}</div>
+	</div>
+     <div class="form-group row">
+				<div class="col-2">{{form_label(comment_form.email)}} :</div>
+				<div class="col-10">{{form_widget(comment_form.email)}}</div>
+	</div>
+     <div class="form-group row">
+				<div class="col-2">{{form_label(comment_form.photo)}} :</div>
+				<div class="col-10">{{form_widget(comment_form.photo)}}</div>
+	</div>
+     <div class="form-group row">
+				<div class="col-2">Envoyer:</div>
+				<div class="col-10">{{form_widget(comment_form.submit)}}</div>
+	</div>
+
+
+         {# <div class="col" id="some-custom-id">
+            {{ form_rest(comment_form) }} // Affcihe la totalité du reste du formulaire
+        </div> #}
+    </div>
+    {{form_end(comment_form)}}
 </div>
 {% endblock %}
