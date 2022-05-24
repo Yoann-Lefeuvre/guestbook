@@ -17,7 +17,7 @@
 
     {% for comment in comments %}
         {% if comment.photoFilename %}
-        <img src="{{ asset('uploads/photos/' ~ comment.photofilename) }}" />
+        <img id="com_photo" src="{{ asset('uploads/photos/' ~ comment.photofilename) }}" />
         {% endif %}
 
         <h4>{{ comment.author }}</h4>
@@ -39,32 +39,33 @@
 {% else %}
         <div>Il n'y a pas de commentaire pour cette conférence.</div>
 {% endif %}
-    <h2>Ajouter un commentaire</h2>
+<hr/>
+    <h2>Ajouter un commentaire :</h2><br/>
     {#  {{form(comment_form)}}  affiche la totalité du formulaire #}
 
 <div id="comment-form">
     {{form_start(comment_form)}}
     
     <div class="form-group row">
-				<div class="col-2">{{form_label(comment_form.author)}} :</div>
-				<div class="col-10">{{form_widget(comment_form.author)}}</div>
-	</div>
+				<div class="col-3">{{form_label(comment_form.author)}} :</div>
+				<div class="col-9">{{form_widget(comment_form.author)}}</div>
+	</div><br/>
      <div class="form-group row">
-				<div class="col-2">{{form_label(comment_form.text)}} :</div>
-				<div class="col-10">{{form_widget(comment_form.text)}}</div>
-	</div>
+				<div class="col-3">{{form_label(comment_form.text, 'Votre commentaire')}} :</div>
+				<div class="col-9">{{form_widget(comment_form.text, {'attr': {'cols': '50', 'rows':'7'}})}}</div>
+	</div><br/>
      <div class="form-group row">
-				<div class="col-2">{{form_label(comment_form.email)}} :</div>
-				<div class="col-10">{{form_widget(comment_form.email)}}</div>
-	</div>
+				<div class="col-3">{{form_label(comment_form.email)}} :</div>
+				<div class="col-9">{{form_widget(comment_form.email)}}</div>
+	</div><br/>
      <div class="form-group row">
-				<div class="col-2">{{form_label(comment_form.photo)}} :</div>
-				<div class="col-10">{{form_widget(comment_form.photo)}}</div>
-	</div>
+				<div class="col-3">{{form_label(comment_form.photo)}} :</div>
+				<div class="col-9">{{form_widget(comment_form.photo)}}</div>
+	</div><br/>
      <div class="form-group row">
-				<div class="col-2">Envoyer:</div>
-				<div class="col-10">{{form_widget(comment_form.submit)}}</div>
-	</div>
+				<div class="col-3"> Envoyer :</div>
+				<div class="col-9">{{form_widget(comment_form.submit)}}</div>
+	</div><br/>
 
 
          {# <div class="col" id="some-custom-id">
