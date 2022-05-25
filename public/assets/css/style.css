@@ -23,3 +23,7 @@ a {
   border-radius: 3px;
   margin: 1em 3em;
 }
+#login {
+  max-width: 30%;
+  margin: 0 auto;
+}
