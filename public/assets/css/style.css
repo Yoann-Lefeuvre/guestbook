@@ -5,13 +5,13 @@
   color: aqua;
 }
 #entete a {
-  color: orange;
-  border: 0.1em solid orange;
+  color: orangered;
+  border: 0.1em solid orangered;
   text-decoration: none;
-  padding: 0.5em;
+  padding: 0.2em 1.3em;
 
   border-radius: 0.2em;
-  box-shadow: 0.15em 0.15em;
+  box-shadow: 0.07em 0.07em;
 }
 
 a {

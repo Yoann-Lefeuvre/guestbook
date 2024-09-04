@@ -33,8 +33,14 @@
                  {% endfor %}     
              </ul>
              <!-- Admin -->
+             {% if is_granted('ROLE_ADMIN')%}
              <div>
-             <a class="btn btn-outline-info" href="{{ path('app_login') }}">Admin</a>
+             <a class="btn btn-outline-info m-3" href="{{ path('admin') }}">Admin</a>
+             </div>
+             {% endif %}
+               <!-- Login -->
+             <div>
+             <a class="btn btn-outline-info" href="{{ path('app_login') }}">Login</a>
              </div>
                <!-- Barre search -->
               <form class="d-flex offset-1" role="search">

@@ -54,6 +54,7 @@ class ConferenceController extends AbstractController
         
                     $this->entityManager->persist($comment);
                     
+                    
                     //Identification du SPAM dans les commentaires
                     $context = [
                                         'user_ip' => $request->getClientIp(),
@@ -64,6 +65,7 @@ class ConferenceController extends AbstractController
                                     if (2 === $spamChecker->getSpamScore($comment, $context)) {
                                         throw new \RuntimeException('Blatant spam, go away!');
                                     }
+                    
 
                     $this->entityManager->flush();
         
