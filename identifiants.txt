@@ -1,5 +1,7 @@
 username: admin
-mp      : yoaLEF85   hash : $2y$13$JzWvidC0rWhUMklM.ux7uu0/esrSSymtmZc8IC7r8qQCJ.kvvxLPC
+mp      : marcoPOLO2024   hash : $2y$13$y1VGxP6wRvjLNeSt3kflhe45l2wVIu29L6b1K6YuUxynma1uh3mWi
+
+(mp      : yoaLEF85   hash : $2y$13$JzWvidC0rWhUMklM.ux7uu0/esrSSymtmZc8IC7r8qQCJ.kvvxLPC)
 
 
 //Commande symfony pour hasher le password
@@ -7,4 +9,6 @@ symfony console security:hash-password
 
 //Requete sql pour insérer l'admin en BDD:
 INSERT INTO admin (id, username, roles, password)
-VALUES (null, 'admin', '["ROLE_ADMIN"]', '$2y$13$JzWvidC0rWhUMklM.ux7uu0/esrSSymtmZc8IC7r8qQCJ.kvvxLPC')
+VALUES (null, 'admin', '["ROLE_ADMIN"]', '$2y$13$y1VGxP6wRvjLNeSt3kflhe45l2wVIu29L6b1K6YuUxynma1uh3mWi')
+
+$2y$13$y1VGxP6wRvjLNeSt3kflhe45l2wVIu29L6b1K6YuUxynma1uh3mWi
