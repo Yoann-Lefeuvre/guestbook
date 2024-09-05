@@ -1,6 +1,16 @@
 version: '3'
 
 services:
+  php:
+    image: php:8.2-fpm
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - database
+    environment:
+      - SYMFONY_ENV=dev
+      - DATABASE_URL=${DATABASE_URL}
+
 ###> doctrine/doctrine-bundle ###
   database:
     image: postgres:${POSTGRES_VERSION:-13}-alpine

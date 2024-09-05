@@ -9,8 +9,8 @@
 </style>
 
 <div class="example-wrapper">
-    <h2>{{conference.city}} Conférence : </h2>
-  <img id="com_photo" src="{{asset('uploads/photos/' ~ conference.city ~ '.jpg')}}" />
+    <h2 style="margin-left:20%"> Conférence {{conference.city}} </h2>
+  <img id="com_photo" style="border-radius:5px" src="{{asset('uploads/photos/' ~ conference.city ~ '.jpg')}}" />
 
 
 {% if comments|length >= 0%}
@@ -50,23 +50,23 @@
     
     <div class="form-group row">
 				<div class="col-3">{{form_label(comment_form.author)}} :</div>
-				<div class="col-9">{{form_widget(comment_form.author)}}</div>
+				<div class="col-9">{{form_widget(comment_form.author,{'attr':{'class':'form-control'}})}}</div>
 	</div><br/>
      <div class="form-group row">
 				<div class="col-3">{{form_label(comment_form.text, 'Votre commentaire')}} :</div>
-				<div class="col-9">{{form_widget(comment_form.text, {'attr': {'cols': '50', 'rows':'5'}})}}</div>
+				<div class="col-9">{{form_widget(comment_form.text, {'attr': {'class':'form-control','cols': '50', 'rows':'5'}})}}</div>
 	</div><br/>
      <div class="form-group row">
 				<div class="col-3">{{form_label(comment_form.email)}} :</div>
-				<div class="col-9">{{form_widget(comment_form.email)}}</div>
+				<div class="col-9">{{form_widget(comment_form.email,{'attr':{'class':'form-control'}})}}</div>
 	</div><br/>
      <div class="form-group row">
 				<div class="col-3">{{form_label(comment_form.photo)}} :</div>
-				<div class="col-9">{{form_widget(comment_form.photo)}}</div>
+				<div class="col-9">{{form_widget(comment_form.photo,{'attr':{'class':'btn btn-outline-info'}})}}</div>
 	</div><br/>
      <div class="form-group row">
-				<div class="col-3"> Envoyer :</div>
-				<div class="col-9">{{form_widget(comment_form.submit)}}</div>
+				<div class="col-5"></div>
+				<div class="col-7">{{form_widget(comment_form.submit,{'label':'Envoyer','attr':{'class':'btn btn-outline-info'}})}}</div>
 	</div><br/>
 
 
