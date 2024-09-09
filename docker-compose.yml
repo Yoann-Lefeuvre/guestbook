@@ -1,31 +1,67 @@
-version: '3'
+version: '3.8'
 
 services:
-  php:
-    image: php:8.2-fpm
+  app:
+#    image: php:8.2-fpm
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: symfony_app
+    working_dir: /var/www/symfony
+   
     volumes:
-      - .:/var/www/html
+      - ../guestbook:/var/www/symfony
+      - ./php.ini:/usr/local/etc/php/php.ini
+    networks:
+      - symfony
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - SYMFONY_ENV=dev
     depends_on:
       - database
-    environment:
-      - SYMFONY_ENV=dev
-      - DATABASE_URL=${DATABASE_URL}
 
-###> doctrine/doctrine-bundle ###
-  database:
-    image: postgres:${POSTGRES_VERSION:-13}-alpine
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
-      POSTGRES_USER: ${POSTGRES_USER:-symfony}
+  web:
+    image: nginx:alpine
+    container_name: symfony_web
+    working_dir: /var/www/symfony
     volumes:
-      - db-data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
+      - ../guestbook:/var/www/symfony          # Montez votre projet Symfony local dans le conteneur
+      - ./nginx.conf:/etc/nginx/nginx.conf   # Utilisez une configuration Nginx personnalisée
+    ports:
+      - "8080:80"   # Mapping du port 80 (conteneur) au port 8080 (hôte)
+    networks:
+      - symfony
+    depends_on:
+      - app
 
+  database:
+    image: postgres:15
+    container_name: symfony_db
+    environment:
+      # POSTGRES_DB: ${POSTGRES_DB:-app}
+      # POSTGRES_USER: ${POSTGRES_USER:-symfony}
+      # POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
+      POSTGRES_DB: app
+      POSTGRES_USER: symfony
+      POSTGRES_PASSWORD: ChangeMe
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - symfony
+  
+  adminer:
+    image: adminer
+    container_name: symfony_adminer
+    depends_on:
+      - database
+    ports:
+      - "8090:8080"
+    networks:
+      - symfony
+
+networks:
+  symfony:
+     driver: bridge
 volumes:
-###> doctrine/doctrine-bundle ###
-  db-data:
-###< doctrine/doctrine-bundle ###
+  db_data:
